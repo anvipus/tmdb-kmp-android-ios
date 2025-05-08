@@ -25,6 +25,9 @@ kotlin {
             implementation(libs.androidx.material)
             implementation(libs.sqldelight.android)
             implementation(libs.ktor.okhttp)
+            implementation(libs.koin.android)
+
+            implementation(project(":shared"))
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -84,5 +87,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.navigation.compose)
+    implementation(libs.androidx.material3.android)
     debugImplementation(compose.uiTooling)
 }

@@ -7,6 +7,17 @@ struct ContentView: View {
         VStack {
             Button("Click me!") {
                 withAnimation {
+                    let repository = MovieRepositoryFactoryKt.createMovieRepository()
+                    let movies = repository.getPopularMovies()
+                    
+                    // Log jumlah film yang berhasil diambil
+                        print("✅ Fetched \(movies.count) movies")
+
+                        // Log isi detail tiap film (jika Movie punya property seperti title)
+                        for movie in movies {
+                            print("🎬 \(movie.title ?? "No Title")")
+                        }
+                    
                     showContent = !showContent
                 }
             }

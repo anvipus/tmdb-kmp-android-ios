@@ -16,3 +16,10 @@ allprojects {
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
+
+gradle.projectsEvaluated {
+    tasks.matching { it.name == "assemble" || it.name == "build" }.configureEach {
+        dependsOn(":shared:syncFramework")
+    }
+}
+

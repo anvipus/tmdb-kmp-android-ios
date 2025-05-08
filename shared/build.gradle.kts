@@ -1,9 +1,12 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -22,8 +25,14 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "Shared"
             isStatic = true
+            linkerOpts(
+                "-lsqlite3",
+                "-L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib"
+            )
         }
     }
+
+
 
     sourceSets {
         val commonMain by getting {
@@ -39,6 +48,8 @@ kotlin {
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.multiplatform.settings)
                 implementation(libs.koin.core)
+                implementation(libs.sqldelight.extensions)
+                implementation("app.cash.sqldelight:coroutines-extensions:2.0.1")
             }
         }
 
@@ -76,3 +87,28 @@ android {
         minSdk = libs.versions.androidMinSdk.get().toInt()
     }
 }
+
+val sdkName: String = System.getenv("SDK_NAME") ?: "iphonesimulator"
+val targetName = when {
+    sdkName.startsWith("iphoneos") -> "iosArm64"
+    sdkName.startsWith("iphonesimulator") -> "iosX64"
+    else -> throw GradleException("Unknown SDK_NAME: $sdkName")
+}
+
+val framework = (kotlin.targets.getByName(targetName) as KotlinNativeTarget)
+    .binaries.getFramework("Release")
+
+tasks.register<Sync>("syncFramework") {
+    val outputDir = File(buildDir, "XCFrameworks/Release")
+    dependsOn(framework.linkTask)
+    from({ framework.outputDirectory })
+    into(outputDir)
+}
+
+sqldelight {
+    database("AppDatabase") {
+        packageName = "com.anvipus.explore.kmp.db"
+        sourceFolders = listOf("sqldelight")
+    }
+}
+

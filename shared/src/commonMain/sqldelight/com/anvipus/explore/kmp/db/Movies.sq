@@ -1,0 +1,44 @@
+CREATE TABLE movies (
+    id INTEGER NOT NULL PRIMARY KEY,
+    adult INTEGER,
+    backdrop_path TEXT,
+    original_language TEXT,
+    original_title TEXT,
+    overview TEXT,
+    popularity REAL,
+    poster_path TEXT,
+    release_date TEXT,
+    title TEXT,
+    video INTEGER,
+    vote_average REAL,
+    vote_count REAL
+);
+
+selectAll:
+SELECT * FROM movies;
+
+selectById:
+SELECT * FROM movies WHERE id = ?;
+
+insertMovie:
+INSERT INTO movies (
+    id,
+    adult,
+    backdrop_path,
+    original_language,
+    original_title,
+    overview,
+    popularity,
+    poster_path,
+    release_date,
+    title,
+    video,
+    vote_average,
+    vote_count
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteAll:
+DELETE FROM movies;
+
+deleteById:
+DELETE FROM movies WHERE id = ?;

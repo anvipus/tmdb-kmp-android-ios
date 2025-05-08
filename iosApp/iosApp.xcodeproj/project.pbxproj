@@ -11,7 +11,24 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		A561581A2DC9F0E100CA3F72 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A56158192DC9F0E100CA3F72 /* Shared.framework */; };
+		A561581B2DC9F0E100CA3F72 /* Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A56158192DC9F0E100CA3F72 /* Shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A572427B2DCB50EE00FA96C8 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A572427A2DCB50EE00FA96C8 /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A561581C2DC9F0E100CA3F72 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A561581B2DC9F0E100CA3F72 /* Shared.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -20,6 +37,8 @@
 		7555FF7B242A565900829871 /* KmpExplore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KmpExplore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A56158192DC9F0E100CA3F72 /* Shared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Shared.framework; path = ../shared/build/XCFrameworks/Release/Shared.framework; sourceTree = "<group>"; };
+		A572427A2DCB50EE00FA96C8 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		AB3632DC29227652001CCB65 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -28,6 +47,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A572427B2DCB50EE00FA96C8 /* libsqlite3.tbd in Frameworks */,
+				A561581A2DC9F0E100CA3F72 /* Shared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +66,8 @@
 		42799AB246E5F90AF97AA0EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A572427A2DCB50EE00FA96C8 /* libsqlite3.tbd */,
+				A56158192DC9F0E100CA3F72 /* Shared.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -98,6 +121,7 @@
 				7555FF77242A565900829871 /* Sources */,
 				B92378962B6B1156000C7307 /* Frameworks */,
 				7555FF79242A565900829871 /* Resources */,
+				A561581C2DC9F0E100CA3F72 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
